@@ -9,7 +9,15 @@ For CS 260
 
 ### Design
 
-![Login](login design.png)
+![Login](loginDesign.png)
+
+![For You](foryouDesign.png)
+
+![Search](searchDesign.png)
+
+![Search results](searchresultDesign.png)
+
+![History](historyDesign.png)
 
 
 
