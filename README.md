@@ -8,7 +8,9 @@ For CS 260
 [para]
 
 ### Design
-[images]
+
+![Login](login design.png)
+
 
 
 ### Key features
