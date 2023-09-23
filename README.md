@@ -41,8 +41,8 @@ I will demonstrate the following required technologies:
   - wordlist (4MB) from [GitHub public repo](https://github.com/dwyl/english-words/blob/master/words_alpha.txt)
     - random word generator
   - thesaurus (18MB)  from [GitHub public repo](https://github.com/zaibacu/thesaurus/blob/master/en_thesaurus.jsonl)
-  - phonetic transcriptions 
-    - edit distance calculator
+  - phonetic transcriptions (3 MB) from [GitHub public repo](https://github.com/open-dict-data/ipa-dict/blob/master/data/en_US.txt)
+    - Levenshtein edit distance calculator code [here](https://www.30secondsofcode.org/js/s/levenshtein-distance/)
   - database of past searches by user consulted by:
     - `History` page list of past queries
     - `For You` page list of recommended new words based on each specific user and based on all users
