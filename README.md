@@ -1,5 +1,6 @@
-# startup
-For CS 260
+# PoetryMate
+CS 260 Startup Project
+
 
 ## Description deliverable
 
