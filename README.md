@@ -50,3 +50,5 @@ I will demonstrate the following required technologies:
   - Login - Register and login users, and store login credentials in database. Can continue as guest?
   - WebSocket - Real time updates to the `For You` and `History` pages
   - React - production builds will be done on react
+
+
