@@ -52,3 +52,11 @@ I will demonstrate the following required technologies:
   - React - production builds will be done on react
 
 
+## HTML Deliverable
+I built the structure of PoetryMate in HTML
+- **HTML pages** - structured all 5 pages for application: index.html (`Login`), foryou.html, history.html, search.html, searchResult.html
+- **Links** - All pages except `Login` have links to all the other pages, except to `Search Results`, which can only be reached by the Search button from the `Search` page. `Login`'s Log in button links to `For You`
+- **Text** - Placeholder for all future word data (from database and 3rd party calls). Headers and footers for all pages. 
+- **Images** - Used an open source favicon image for browser attractiveness
+- **Login** - Input boxes (one for email, one for password) and submit button for login
+- **Database/WebSocket** - Placeholder data on `For You`, `History` and `Search Results` pages, which will dynamically update later
