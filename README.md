@@ -60,3 +60,10 @@ I built the structure of PoetryMate in HTML
 - **Images** - Used an open source favicon image for browser attractiveness
 - **Login** - Input boxes (one for email, one for password) and submit button for login
 - **Database/WebSocket** - Placeholder data on `For You`, `History` and `Search Results` pages, which will dynamically update later
+
+
+
+##CSS Deliverable
+I styled the application, creating all relevant visual features for the end experience.
+- **Header, footer, and main content** - Footer and header are banner-style elements, and content is made up of cards that divide up information.
+- **Navigation elements** Links are in the upper right corner, and are only underlined when moused over. Submit buttons
