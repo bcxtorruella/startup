@@ -65,5 +65,9 @@ I built the structure of PoetryMate in HTML
 
 ##CSS Deliverable
 I styled the application, creating all relevant visual features for the end experience.
-- **Header, footer, and main content** - Footer and header are banner-style elements, and content is made up of cards that divide up information.
-- **Navigation elements** Links are in the upper right corner, and are only underlined when moused over. Submit buttons
+- **Header, footer, and main content** - Footer and header are banner-style elements with main content stacked in between.
+- **Navigation elements** - Links are in the upper right corner, and are only underlined when moused over. Submit buttons are styled to theme.
+- **Responsive to window resizing** - Using vw and vh as primary sizes took care of most resizing. For espcially small screen widths, the site name disappears.
+- **Application elements** - Content is displayed in cards that divide up information. Blue and yellow theme colors help with foreground and background; so does box-shadows behind the content cards. Pages have animated transitions.
+- **Application text content** - Found a nice font set and applied to all elements. Text contrasts correctly with background. Important text is larger/bolder/italic as appropriate.
+- **Application images** - Pen emoji used as list bullet.
