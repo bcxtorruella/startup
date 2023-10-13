@@ -9,36 +9,39 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="main.css" />
   </head>
 
   <body>
     <header>
-      <h1>PoetryMate<sup>:)</sup></h1>
+      <h1 id="site-header">PoetryMate<sup> :)</sup></h1>
       <nav>
-        <menu>
-            <li><a href="foryou.html">For You</a></li>
-            <li><a href="search.html">Search</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </menu>
+        <a href="foryou.html">For You</a>
+        <a href="search.html">Search</a>
+        <a href="history.html">History</a>
+        <a href="index.html">Logout</a>
       </nav>
-      <hr />
     </header>
+    
+    <hr />
+
+    <h1 id="page-header" class="fade">Search</h1>
+
+    <form id="search" class="fade" method="get" action="searchResult.html">
+      <input type="text" id="search-bar" placeholder="Search input" />
+      <button type="submit" id="search-button">Search</button>
+    </form>
 
     <main>
-        <h1 class="page-header">Search</h1>
 
-        <form method="get" action="searchResult.html">
-            <input type="text" id="search" placeholder="Search input" />
-            <button type="submit">Search</button>
-        </form>
     </main>
 
+    <hr />
+
     <footer>
-      <hr />
-      <span class="text-reset">Author: Brandon Torruella</span>
+      <span id="text-reset">Author: Brandon Torruella</span>
       <br />
-      <a href="https://github.com/bcxtorruella/startup/">GitHub</a> for this project
+      <a id="author-link" href="https://github.com/bcxtorruella/startup/"><b>GitHub</b></a> for this project
     </footer>
   </body>
 </html>

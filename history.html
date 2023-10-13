@@ -9,40 +9,46 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="main.css" />
   </head>
 
   <body>
     <header>
-      <h1>PoetryMate<sup>:)</sup></h1>
+      <h1 id="site-header">PoetryMate<sup> :)</sup></h1>
       <nav>
-        <menu>
-            <li><a href="foryou.html">For You</a></li>
-            <li><a href="search.html">Search</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </menu>
+        <a href="foryou.html">For You</a>
+        <a href="search.html">Search</a>
+        <a href="history.html">History</a>
+        <a href="index.html">Logout</a>
       </nav>
-      <hr />
     </header>
 
+    <hr />
+
+    <h1 id="page-header" class="fade">History</h1>
+
     <main>
-        <h1 class="page-header">History</h1>
-        <div class="page-card">
-            <list>
-                <li>List item</li>
-                <li>List item</li>
-                <li>List item</li>
-                <li>List item</li>
-                <li>List item</li>
-            </list>
+        <div class="list-card fade">
+            <ul class="card-content">
+              <li>[list item]</li>
+              <li>[list item]</li>
+              <li>[list item]</li>
+              <li>[list item]</li>
+              <li>[list item]</li>
+              <li>[list item]</li>
+              <li>[list item]</li>
+              <li>[list item]</li>
+              <li>[list item]</li>
+            </ul>
         </div>
     </main>
+    
+    <hr />
 
     <footer>
-      <hr />
-      <span class="text-reset">Author: Brandon Torruella</span>
+      <span id="text-reset">Author: Brandon Torruella</span>
       <br />
-      <a href="https://github.com/bcxtorruella/startup/">GitHub</a> for this project
+      <a id="author-link" href="https://github.com/bcxtorruella/startup/"><b>GitHub</b></a> for this project
     </footer>
   </body>
 </html>

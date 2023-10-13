@@ -1,0 +1,232 @@
+* {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: darkslategrey;
+    color: whitesmoke;
+    height: 98vh;
+}
+
+hr {
+    border-color: rgb(240, 197, 117);
+    width: 96vw;
+}
+
+header {
+    flex: 0 1vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: darkcyan;
+    border-style: ridge;
+    border-radius: 0.5em;
+
+    height: fit-content;
+}
+
+#site-header {
+    color: whitesmoke;
+    padding-left: 5vw;
+    font-size: 2.5em;
+}
+
+@media (max-width: 600px) {
+    #site-header {
+        opacity: 0%;
+    }
+}
+
+nav{
+    position:absolute;
+    right: 5vw;
+}
+
+a {
+    border-left: solid;
+    border-color: rgb(240, 197, 117);
+    padding:1vw;
+    color: aliceblue;
+}
+
+a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a:active {
+    text-decoration: underline;
+    color:whitesmoke
+  }
+
+
+#page-header{
+    font-size: 2em;
+    margin-left: 5vw;
+    flex: 0 1vh;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+    flex:98;
+}
+
+.page-card{
+    background-color: darkcyan;
+    border-style: ridge;
+    border-radius: 0.5em;
+    box-shadow: 5px 5px rgb(33, 56, 56);
+    
+    margin: 3vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    
+    width: 30vw;
+    height: fit-content;
+    text-align: center;
+}
+
+.list-card {
+    background-color: darkcyan;
+    border-style: ridge;
+    border-radius: 0.5em;
+    box-shadow: 5px 5px rgb(33, 56, 56);
+    
+    margin: 3vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    
+    width: 50vw;
+    height: 90%;
+    text-align: left;
+
+    align-self: flex-start;
+}
+
+.card-header {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-bottom: solid;
+}
+
+.card-content {
+    padding: .5em;
+}
+
+footer {
+    flex: 0 1vh;
+}
+
+#text-reset, #author-link {
+    margin:1em;
+    border:none;
+    padding: 0vw;
+}
+
+ul {
+    list-style-image: url('/favicon-16x16.png');
+    list-style-type: none;
+    list-style-position: inside;
+}
+
+#search {
+    width: fit-content;
+    margin-left: 5vw;
+
+}
+
+#search-bar {
+    height:25px;
+    width: 60vw;
+    background-color: whitesmoke;
+    border-radius:.5em;
+    border: none;
+    padding-left: 1em;
+}
+
+#go-button{
+    background-color: rgb(240, 197, 117);
+    border: none;
+    border-radius:.5em;
+    cursor: pointer;
+
+    padding: 5px 10px;
+    margin-right: 16px;
+}
+
+#search-bar:hover, #search-bar:focus {
+    background-color: lightblue;
+  }
+
+.fade {
+    opacity: 100%;
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+.fly-in {
+    position: relative;
+    right: 0vw;
+    animation-name: fly;
+    animation-duration: 1s;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes fly {
+    0% {
+        right: 100vw;
+    }
+    70%{
+        right: -2vw;
+    }
+    100% {
+        right: 0vw;
+    }
+}
+
+i {
+    color:wheat
+}
+
+
+#login-card{
+    background-color: darkcyan;
+    border-style: ridge;
+    border-width: 5px;
+    border-radius: 0.5em;
+    border-color: wheat;
+
+    box-shadow: 5px 5px rgb(33, 56, 56);
+    
+    padding: 3vw;
+
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+}
+
+.login-content{
+    padding:.5em;
+}

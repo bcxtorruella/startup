@@ -9,49 +9,62 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="main.css" />
   </head>
 
   <body>
     <header>
-      <h1>PoetryMate<sup>:)</sup></h1>
+      <h1 id="site-header">PoetryMate<sup> :)</sup></h1>
       <nav>
-        <menu>
-            <li><a href="foryou.html">For You</a></li>
-            <li><a href="search.html">Search</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </menu>
+        <a href="foryou.html">For You</a>
+        <a href="search.html">Search</a>
+        <a href="history.html">History</a>
+        <a href="index.html">Logout</a>
       </nav>
-      <hr />
     </header>
 
+    <hr />
+
+    <h1 id="page-header" class="fly-in">Results for: <i class="fly-in">[Searched word here]</i></h1>
+
+    <form id="search" method="get" action="searchResult.html">
+      <input type="text" id="search-bar" placeholder="Search input" />
+      <button id="go-button" type="submit">Search</button>
+  </form>
+
     <main>
-        <h1 class="page-header">Search</h1>
-        <p>Results for: <b>[Searched word here]</b></p>
-
-        <form method="get" action="searchResult.html">
-            <input type="text" id="search" placeholder="Search input" />
-            <button type="submit">Search</button>
-        </form>
-
-        <div class="page-card">
+        <div class="list-card fly-in">
             <span>
-                <h3>Rhymes</h3>
-                <p>[Phonetically similar words]</p>
+              <h3 class="card-header">Rhymes</h3>
+              <ul class="card-content">
+                  <li>[Phonetically similar words]</li>
+                  <li>[words]</li>
+                  <li>[words]</li>
+                  <li>[words]</li>
+                  <li>[words]</li>
+                  <li>...</li>
+              </ul>            
             </span>
             <span>
-                <h3>Similar Words</h3>
-                <p>[Semantically similar words]</p>
+                <h3 class="card-header">Similar Words</h3>
+                <ul class="card-content">
+                  <li>[Semantically similar words]</li>
+                  <li>[words]</li>
+                  <li>[words]</li>
+                  <li>[words]</li>
+                  <li>[words]</li>
+                  <li>...</li>
+              </ul> 
             </span>
         </div>
-
     </main>
 
+    <hr />
+
     <footer>
-      <hr />
-      <span class="text-reset">Author: Brandon Torruella</span>
+      <span id="text-reset">Author: Brandon Torruella</span>
       <br />
-      <a href="https://github.com/bcxtorruella/startup/">GitHub</a> for this project
+      <a id="author-link" href="https://github.com/bcxtorruella/startup/"><b>GitHub</b></a> for this project
     </footer>
   </body>
 </html>
