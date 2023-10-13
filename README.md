@@ -63,7 +63,7 @@ I built the structure of PoetryMate in HTML
 
 
 
-##CSS Deliverable
+## CSS Deliverable
 I styled the application, creating all relevant visual features for the end experience.
 - **Header, footer, and main content** - Footer and header are banner-style elements with main content stacked in between.
 - **Navigation elements** - Links are in the upper right corner, and are only underlined when moused over. Submit buttons are styled to theme.
