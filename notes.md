@@ -48,3 +48,7 @@ Modify text with `element.textContent = "foobar"`
 Also NB `cellElement.setAttribute("onclick", "value")`;
 
 Format strings with \`${variable}\`
+
+### JSON
+For JS Object -> string: `JSON.stringify(obj);`
+For string -> JS Object: `JSON.parse(jsonString);`
