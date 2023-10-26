@@ -24,3 +24,27 @@ from folder containing key, do:
 | filter   | Run a function to remove items                            | `a.filter(i => i%2)`          |
 | every    | Run a function to test if all items match                 | `a.every(i => i < 3)`         |
 | some     | Run a function to test if any items match                 | `a.some(i => 1 < 1)`          |
+
+### Sorting arrays
+It's basically done with an arrow function. 
+`myarray.sort((a, b) => sortDirection * (a.sortBy < b.sortBy ? 1 : -1));`
+
+`toSorted` returns a new array without modifying the original
+
+### HTML modification from JS
+`document` refers to the whole HTML document linked to (which is done by putting `<script src="table.js"></script>` in the HTML). 
+
+Can find elements that are children of the whole page with `document.querySelector('CSStag-EGdiv')`;
+CSStag can be ID or class: `#courses`
+
+Delete: `el.parentElement.removeChild(el);`
+
+Insert: `const newChild = document.createElement('elementType-EGdiv');`
+
+Can inject HTML with `element.innerHTML`: `el.innerHTML = '<div class="injected"><b>Hello</b>!</div>';`
+
+Modify text with `element.textContent = "foobar"`
+
+Also NB `cellElement.setAttribute("onclick", "value")`;
+
+Format strings with \`${variable}\`
