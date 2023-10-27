@@ -26,10 +26,12 @@ from folder containing key, do:
 | some     | Run a function to test if any items match                 | `a.some(i => 1 < 1)`          |
 
 ### Sorting arrays
+
 It's basically done with an arrow function. 
 `myarray.sort((a, b) => sortDirection * (a.sortBy < b.sortBy ? 1 : -1));`
 
 `toSorted` returns a new array without modifying the original
+
 
 ### HTML modification from JS
 `document` refers to the whole HTML document linked to (which is done by putting `<script src="table.js"></script>` in the HTML). 
@@ -57,6 +59,7 @@ For string -> JS Object: `JSON.parse(jsonString);`
 Allow parallel (not simultaneous) threading
 
 #### Make a new promise obj then construct it:
+This constructor is called immediately. The delayed function is in `then()`, called when `resolve()` is.
 ```
      return new Promise((resolve, reject) => {
           order.element.innerHTML = `<span>[${order.id}] &#127829; <b>Making pizza</b> ...</span>`;
@@ -79,3 +82,26 @@ coinToss // a newly constructed or returned Promise
   .catch((err) => console.log(`Error: ${err}`))                  // accesses the Promise's error message
   .finally(() => console.log('Toss completed'));                 // always excecutes
 ```
+***NB: `resolve(value, err)` calls `then(value, reason)`, and `reject(err)` calls `catch(reason)`; they pass the arguments***
+
+So in that way you can use resolve to pass messages to then, which can output them into HTML or whatever.
+
+`then()` is really the only one you need. Tis the primitive
+
+But in the end you can just `resolve()` a promise inside its constructor, and then something like `console.log(await cow());` will, for example, print the resolve result value message thing
+
+
+
+
+
+### `await`ing an `async` function: the actual way
+big boys do:
+```
+     const httpResponse = await fetch('https://simon.cs260.click/api/user/me');
+     const jsonResponse = await httpResponse.json();
+     console.log(jsonResponse));
+     console.log('done');
+```
+`async` functions are always instantly resolved and return a promise object. If youdeclare a return Promise object, though, it is not instantly resolved upon returning, even if `resolve()` is in the constructor???
+
+You can only `await` at top level or in an `async` function
