@@ -41,7 +41,7 @@ Delete: `el.parentElement.removeChild(el);`
 
 Insert: `const newChild = document.createElement('elementType-EGdiv');`
 
-Can inject HTML with `element.innerHTML`: `el.innerHTML = '<div class="injected"><b>Hello</b>!</div>';`
+Can replace whole HTML of element with `element.innerHTML`: `el.innerHTML = '<div class="injected"><b>Hello</b>!</div>';`
 
 Modify text with `element.textContent = "foobar"`
 
@@ -52,3 +52,29 @@ Format strings with \`${variable}\`
 ### JSON
 For JS Object -> string: `JSON.stringify(obj);`
 For string -> JS Object: `JSON.parse(jsonString);`
+
+### Promises
+Allow parallel (not simultaneous) threading
+
+#### Make a new promise obj then construct it:
+```
+     return new Promise((resolve, reject) => {
+      doWork(order, 300, 1000, resolve, reject, "Burned your pizza!");
+    });
+```
+And then somewhere within the constructor or called function do and if/else for resolve/reject:
+```
+    if (workTime < max * 0.85) {
+      resolve(order);
+    } else {
+      order.error = errMsg;
+      reject(order);
+    }
+```
+And to handle these responses you can:
+```
+coinToss // a newly constructed or returned Promise
+  .then((result) => console.log(`Coin toss result: ${result}`))  // accesses the Promise's result
+  .catch((err) => console.log(`Error: ${err}`))                  // accesses the Promise's error message
+  .finally(() => console.log('Toss completed'));                 // always excecutes
+```
