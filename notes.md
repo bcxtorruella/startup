@@ -59,7 +59,8 @@ Allow parallel (not simultaneous) threading
 #### Make a new promise obj then construct it:
 ```
      return new Promise((resolve, reject) => {
-      doWork(order, 300, 1000, resolve, reject, "Burned your pizza!");
+          order.element.innerHTML = `<span>[${order.id}] &#127829; <b>Making pizza</b> ...</span>`;
+          doWork(order, 300, 1000, resolve, reject, "Burned your pizza!");
     });
 ```
 And then somewhere within the constructor or called function do and if/else for resolve/reject:
