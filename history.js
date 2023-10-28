@@ -1,7 +1,7 @@
 function loadHistory(user) {
     // load the user's history object
     let history = [];
-    const historyText = localStorage.getItem(user);
+    const historyText = localStorage.getItem('history');
     if (historyText) {
         history = JSON.parse(historyText);
     }

@@ -25,9 +25,9 @@
 
     <hr />
 
-    <h1 id="page-header" class="fly-in">Results for: <i class="fly-in">[Searched word here]</i></h1>
+    <h1 id="page-header" class="fly-in">Results for: <i id="headword" class="fly-in">[Searched word here]</i></h1>
 
-    <form id="search" method="get" action="searchResult.html">
+    <form id="search" method="post" action="javascript:search()">
       <input type="text" id="search-bar" placeholder="Search input" />
       <button id="go-button" type="submit">Search</button>
   </form>
@@ -66,5 +66,9 @@
       <br />
       <a id="author-link" href="https://github.com/bcxtorruella/startup/"><b>GitHub</b></a> for this project
     </footer>
+
+    <script src="searchResult.js"></script>
+    <script src="search.js"></script>
+
   </body>
 </html>
