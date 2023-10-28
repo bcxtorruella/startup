@@ -122,6 +122,11 @@ main{
     border-bottom: solid;
 }
 
+#no-results {
+    color: rgb(1, 54, 104);
+    display: none;
+}
+
 .card-content {
     padding: .5em;
 }
