@@ -2,9 +2,12 @@
 function search() {
     const inputEl = document.querySelector('#search-bar')
     const word = inputEl.value;
-    localStorage.setItem("currentWord", word);
-    addToHistory(word); 
-    window.location.href = "searchResult.html";
+
+    if (word.length) {
+        localStorage.setItem("currentWord", word);
+        addToHistory(word); 
+        window.location.href = "searchResult.html";
+    }
 }
 
 function addToHistory(word) {
@@ -14,11 +17,16 @@ function addToHistory(word) {
         history = JSON.parse(historyText);
     }
     
+    // delete any past duplicates
+    if (history.includes(word)) {
+        history.splice(history.indexOf(word), 1);
+    }
+    
     history.unshift(word);
 
-    // if (history.length > 50) {
-    //     history.pop();
-    // }
+    if (history.length > 50) {
+        history.pop();
+    }
 
     localStorage.setItem('history', JSON.stringify(history))
 }

@@ -15,6 +15,13 @@ function loadHistory(user) {
 
             // fill element w approriate data
             wordLiEl.textContent = word;
+            wordLiEl.onclick = function() {
+                const thisWord = this.textContent;
+                localStorage.setItem("currentWord", thisWord);
+                addToHistory(thisWord);
+                window.location.href = "searchResult.html";
+            };
+            wordLiEl.onmouseover
 
             // add row to table
             listBodyEl.append(wordLiEl);
