@@ -49,12 +49,12 @@ function populateCardList(listElement, values){
 }
 
 function getRhymes(word) {
-    // TODO: get rhymes data here
+    // TODO: get rhymes data here. Will need in FYP as well
     return ["fat", "cat", "sat", "mat"];
 }
 
 function getSimilars(word) {
-    // TODO: get similars data here
+    // TODO: get similars data here. Will need in FYP as well
     return ["tree", "bush", "plant", "leafy thing"];
 }
 

@@ -31,7 +31,7 @@ function loadHistory() {
     }
 }
 
-function getLocalHistory(){
+function getLocalHistory(){ // 1) spits out the current user's history obj. 2) makes sure that that user does have a history obj in localStorage
     const userName = localStorage.getItem('currentUsername');
 
     const allHistoryText = localStorage.getItem('history');
@@ -41,7 +41,7 @@ function getLocalHistory(){
     }
     if (allHistory.length > 0) { // there is some history
         for ({name, words} of allHistory){
-            if (name == userName) {
+            if (name == userName) { // no need to change anything
                 if (!words) words = [];
                 return {name, words};
             }
@@ -49,17 +49,17 @@ function getLocalHistory(){
         // else there is history but not for this user
         const newUser = {name: userName, words: []};
         allHistory.push(newUser);
-        localStorage.setItem('history', JSON.stringify(allHistory))
+        localStorage.setItem('history', JSON.stringify({"history": allHistory}))
         for ({name, words} of allHistory){
             if (name == userName) { // should be in there now
                 if (!words) words = [];
                 return {name, words};
             }
         }
-    } else { // no history at all. make a new obj
-        const newHistory = {"history": [{name: userName, words: []}]};
-        localStorage.setItem('history', JSON.stringify(newHistory))
-        return newHistory.history[0];
+    } else { // no history at all. make a new user history obj
+        const newHistory = {name: userName, words: []};
+        localStorage.setItem('history', JSON.stringify({"history": [newHistory]}))
+        return newHistory;
     }
 }
 
