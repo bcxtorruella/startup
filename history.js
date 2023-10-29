@@ -1,13 +1,14 @@
 function loadHistory() {
     // load the user's history object
     const userName = localStorage.getItem('currentUsername');
-    let history = getLocalHistory().userName;
+    const history = getLocalHistory();
+    const words = history.words;
     
     const listBodyEl = document.querySelector('#history')
 
-    if (history.length) { // if there is history
+    if (words.length) { // if there is history
         // for each word searched, a row.
-        for (const word of history.values()) { 
+        for (const word of words) { 
             // create list element
             const wordLiEl = document.createElement('li');
 
@@ -31,11 +32,35 @@ function loadHistory() {
 }
 
 function getLocalHistory(){
-    const historyText = localStorage.getItem('history');
-    if (historyText) {
-        history = JSON.parse(historyText);
+    const userName = localStorage.getItem('currentUsername');
+
+    const allHistoryText = localStorage.getItem('history');
+    let allHistory = [];
+    if (allHistoryText) {
+        allHistory = JSON.parse(allHistoryText).history;
     }
-    return history;
+    if (allHistory.length > 0) { // there is some history
+        for ({name, words} of allHistory){
+            if (name == userName) {
+                if (!words) words = [];
+                return {name, words};
+            }
+        }
+        // else there is history but not for this user
+        const newUser = {name: userName, words: []};
+        allHistory.push(newUser);
+        localStorage.setItem('history', JSON.stringify(allHistory))
+        for ({name, words} of allHistory){
+            if (name == userName) { // should be in there now
+                if (!words) words = [];
+                return {name, words};
+            }
+        }
+    } else { // no history at all. make a new obj
+        const newHistory = {"history": [{name: userName, words: []}]};
+        localStorage.setItem('history', JSON.stringify(newHistory))
+        return newHistory.history[0];
+    }
 }
 
 loadHistory();

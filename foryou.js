@@ -24,6 +24,17 @@ function loadPopular(){
 
 }
 
+function getLocalHistory(){
+    const historyText = localStorage.getItem('history');
+    let history = []
+    if (historyText) {
+        history = JSON.parse(historyText);
+    } else {
+        history = [{name: "testUser", history: ["test", "again"]}];
+    }
+    return history;
+}
+
 
 
 loadPersonal();
