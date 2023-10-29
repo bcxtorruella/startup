@@ -11,11 +11,8 @@ function search() {
 }
 
 function addToHistory(word) {
-    let history = [];
-    const historyText = localStorage.getItem('history');
-    if (historyText) {
-        history = JSON.parse(historyText);
-    }
+    const username = localStorage.getItem('username');
+    let history = getLocalHistory().username;
     
     // delete any past duplicates
     if (history.includes(word)) {
@@ -28,5 +25,12 @@ function addToHistory(word) {
         history.pop();
     }
 
-    localStorage.setItem('history', JSON.stringify(history))
+    // this should put it in locally
+    const allHistory = getLocalHistory();
+    for (user in allHistory) {
+        if (user.name == username) {
+            user.history = history;
+        }
+    }
+    localStorage.setItem('history', JSON.stringify(allHistory))
 }

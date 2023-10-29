@@ -99,6 +99,11 @@ main{
     text-align: center;
 }
 
+.page-card:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .list-card {
     background-color: darkcyan;
     border-style: ridge;

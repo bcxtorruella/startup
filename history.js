@@ -1,10 +1,8 @@
-function loadHistory(user) {
+function loadHistory() {
     // load the user's history object
-    let history = [];
-    const historyText = localStorage.getItem('history');
-    if (historyText) {
-        history = JSON.parse(historyText);
-    }
+    const userName = localStorage.getItem('currentUsername');
+    let history = getLocalHistory().userName;
+    
     const listBodyEl = document.querySelector('#history')
 
     if (history.length) { // if there is history
@@ -21,7 +19,6 @@ function loadHistory(user) {
                 addToHistory(thisWord);
                 window.location.href = "searchResult.html";
             };
-            wordLiEl.onmouseover
 
             // add row to table
             listBodyEl.append(wordLiEl);
@@ -33,4 +30,14 @@ function loadHistory(user) {
     }
 }
 
+function getLocalHistory(){
+    const historyText = localStorage.getItem('history');
+    if (historyText) {
+        history = JSON.parse(historyText);
+    }
+    return history;
+}
+
 loadHistory();
+
+// history is: History[(name: John, history:{cat, dog, mouse}),(name: Emma, history: {red, blue, greed})]
