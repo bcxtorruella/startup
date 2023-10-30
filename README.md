@@ -71,3 +71,12 @@ I styled the application, creating all relevant visual features for the end expe
 - **Application elements** - Content is displayed in cards that divide up information. Blue and yellow theme colors help with foreground and background; so does box-shadows behind the content cards. Pages have animated transitions.
 - **Application text content** - Found a nice font set and applied to all elements. Text contrasts correctly with background. Important text is larger/bolder/italic as appropriate.
 - **Application images** - Pen emoji used as list bullet.
+
+
+## Javascript deliverable
+For this deliverable did a lot. I think I might have stepped a little bit over into the Login deliverable. The application is now fully interactive according to the issued specifications.
+- **LocalStorage** has a record of every user that has logged in and their past searched words. It also has the currently logged in user.
+- **Search** adds a searched word to the active user's historys and then moves to a `searchResult` papge where Rhymes and Similars are displayed (currently placeholder values).
+- **clickability** on search and history. If you click any of the words, it searches it for you to make Wikipedia-like link chains.
+- **For You** also has placeholder data, but algorithms are implemented for random word and most popular word.
+- **Users** -- logging in will save your searches to your user. Currently you can only enter the site by logging in, but there's also no password
