@@ -79,4 +79,4 @@ For this deliverable did a lot. I think I might have stepped a little bit over i
 - **Search** adds a searched word to the active user's historys and then moves to a `searchResult` papge where Rhymes and Similars are displayed (currently placeholder values).
 - **clickability** on search and history. If you click any of the words, it searches it for you to make Wikipedia-like link chains.
 - **For You** also has placeholder data, but algorithms are implemented for random word and most popular word.
-- **Users** -- logging in will save your searches to your user. Currently you can only enter the site by logging in, but there's also no password
+- **Users** -- logging in will save your searches to your user. There isn't a password. You can also just press "sign in" to bypass.
