@@ -96,7 +96,7 @@ But in the end you can just `resolve()` a promise inside its constructor, and th
 
 ### `await`ing an `async` function: the actual way
 big boys do:
-```
+```js
      const httpResponse = await fetch('https://simon.cs260.click/api/user/me');
      const jsonResponse = await httpResponse.json();
      console.log(jsonResponse));
@@ -105,3 +105,60 @@ big boys do:
 `async` functions are always instantly resolved and return a promise object. If youdeclare a return Promise object, though, it is not instantly resolved upon returning, even if `resolve()` is in the constructor???
 
 You can only `await` at top level or in an `async` function
+
+
+
+# After second midterm
+
+### GET request:
+
+```js
+fetch('https://api.quotable.io/random')
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
+```
+
+### POST request
+```js
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify({
+     // JSON object to pass into database
+    title: 'test title',
+    body: 'test body',
+    userId: 1,
+  }),
+  headers: {
+     // certain predetermined things
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+     // returns response, with json() can get a JSON object
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
+```
+
+### Business about CORS, SOP, accepted origins?
+
+### Making a proj w Node.js
+
+1. Create your project directory
+1. Initialize it for use with NPM by running `npm init -y`
+1. Make sure `.gitignore` file contains `node_modules`
+1. Install any desired packages with `npm install <package name here>`
+1. Add `require('<package name here>')` to your application's JavaScript
+1. Use the code the package provides in your JavaScript
+1. Run your code with `node index.js`
+
+In practice this looks like:
+
+```js
+const giveMeAJoke = require('give-me-a-joke');
+giveMeAJoke.getRandomDadJoke((joke) => {
+  console.log(joke);
+});
+```
