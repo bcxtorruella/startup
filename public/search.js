@@ -11,12 +11,12 @@ function search() {
 }
 
 async function addToHistory(word) {
-    let history = getLocalHistory(); // history obj for user
+    let history = getUserHistory(); // history obj for user
     const words = history.words;
 
     const userName = localStorage.getItem('currentUsername');
     const allHistoryText = localStorage.getItem('history');
-    let newAllHistory = JSON.parse(allHistoryText).history;
+    let newAllHistory = JSON.parse(allHistoryText);
     
     // delete any past duplicates
     if (words.includes(word)) {
@@ -24,7 +24,7 @@ async function addToHistory(word) {
     }
 
     // make new word list (never longer than 50)
-    words.unshift(word);
+    words.unshift(word); // add most recent to front
     if (words.length > 50) {
         words.pop();
     }
@@ -35,44 +35,24 @@ async function addToHistory(word) {
             newAllHistory[i].words = words;
         }
     }
-    localStorage.setItem('history', JSON.stringify({"history": newAllHistory}))
+
+    // update userHistory
+    localStorage.setItem("userHistory", JSON.stringify(history));
+
+    // update all history
+    localStorage.setItem('history', JSON.stringify(newAllHistory))
 
     //update the service
-    const response = await fetch('/api/history', {
+    const response = await fetch('/api/update-history', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(newAllHistory),
       });
+    let brk = 0;
 }
 
-function getLocalHistory(){ // 1) spits out the current user's history obj. 2) makes sure that that user does have a history obj in localStorage
-    const userName = localStorage.getItem('currentUsername');
-
-    const allHistoryText = localStorage.getItem('history');
-    let allHistory = [];
-    if (allHistoryText) {
-        allHistory = JSON.parse(allHistoryText).history;
-    }
-    if (allHistory.length > 0) { // there is some history
-        for ({name, words} of allHistory){
-            if (name == userName) { // no need to change anything
-                if (!words) words = [];
-                return {name, words};
-            }
-        }
-        // else there is history but not for this user
-        const newUser = {name: userName, words: []};
-        allHistory.push(newUser);
-        localStorage.setItem('history', JSON.stringify({"history": allHistory}))
-        for ({name, words} of allHistory){
-            if (name == userName) { // should be in there now
-                if (!words) words = [];
-                return {name, words};
-            }
-        }
-    } else { // no history at all. make a new user history obj
-        const newHistory = {name: userName, words: []};
-        localStorage.setItem('history', JSON.stringify({"history": [newHistory]}))
-        return newHistory;
-    }
+function getUserHistory(){
+    const userHistoryText = localStorage.getItem('userHistory');
+    const userHistory = JSON.parse(userHistoryText);
+    return userHistory;
 }

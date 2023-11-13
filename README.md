@@ -80,3 +80,11 @@ For this deliverable did a lot. I think I might have stepped a little bit over i
 - **clickability** on search and history. If you click any of the words, it searches it for you to make Wikipedia-like link chains.
 - **For You** also has placeholder data, but algorithms are implemented for random word and most popular word.
 - **Users** -- logging in will save your searches to your user. There isn't a password. You can also just press "sign in" to bypass.
+
+
+## Service deliverable
+- **Node.js/Express HTTP Servce** - done!
+- **Static middleware for frontend** - done!
+- **Third party service endpoints** - `For You` retrieves random words from a [random word API](http://random-word-api.herokuapp.com/home)
+- **Backend service endopoints** provides history and login functionality and consistency
+- **Frontend calls** `For You`, `History`, and `Search` pages call backend

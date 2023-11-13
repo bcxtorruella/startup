@@ -1,6 +1,6 @@
 function loadPersonal() {
     // pick (up to) 5 random words and scramble their rhymes and similars across this list
-    const history = getLocalHistory();
+    const history = getUserHistory();
     const words = history.words;
 
     // TODO: pick 5 random words from the words array
@@ -15,12 +15,12 @@ function loadPersonal() {
     //output = [];
     if (output.length) { // if there are recommendations
         // for each word to post, a row.
-        for (const word of output) { 
+        for (const i in output) { 
             // create list element
             const recLiEl = document.createElement('li');
 
             // fill element w approriate data
-            recLiEl.textContent = word;
+            recLiEl.textContent = output[i];
             recLiEl.onclick = function() {
                 const thisWord = this.textContent;
                 localStorage.setItem("currentWord", thisWord);
@@ -43,7 +43,7 @@ function getRecommendations(word) {
     // get 3 rhymes
     // get 3 similars
     // return all in one array
-    return "placeholder";
+    return word;
 }
 
 // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle and https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -68,40 +68,28 @@ function shuffle(array) {
 function loadRandom() {
     const randomEl = document.querySelector("#random")
     
-    // TODO: pick a random word from the dictionary
-    word = "muskrat";
+    // pick a random word from the dictionary
+    let word = "muskrat";
+    const url = "https://random-word-api.herokuapp.com/word?lang=en"
+    fetch(url).then((x) => x.json())
+        .then((response) => {
+            word = response[0];
+            randomEl.textContent = word;
+            randomEl.onclick = function() {
+                const thisWord = this.textContent;
+                localStorage.setItem("currentWord", thisWord);
+                addToHistory(thisWord);
+                window.location.href = "searchResult.html";
+            };
+        });
 
-    randomEl.textContent = word;
-    randomEl.onclick = function() {
-        const thisWord = this.textContent;
-        localStorage.setItem("currentWord", thisWord);
-        addToHistory(thisWord);
-        window.location.href = "searchResult.html";
-    };
+
 }
 
-function loadPopular(){
+async function loadPopular(){
     // consult every user's history to see which word appears the most in them all
-    const allHistory = JSON.parse(localStorage.getItem('history')).history;
-    let allWords = {};
-    for (const user in allHistory) {
-        const words = allHistory[user].words;
-        for (const word in words) {
-            if (!(words[word] in allWords)) {
-                allWords[words[word]] = 0;
-            }
-            allWords[words[word]]++;
-        }
-    }
-    let max = 0;
-    let maxKey = "";
-    for (let thisWord in allWords) {
-        if (allWords[thisWord] > max) {
-            max = allWords[thisWord];
-            maxKey = thisWord;
-        }
-    }
-    const word = maxKey;
+    const response = await fetch('/api/popular');
+    word = await response.json();
 
     // post that word
     const popularEl = document.querySelector("#popular")
@@ -116,36 +104,10 @@ function loadPopular(){
     };
 }
 
-function getLocalHistory(){ // 1) spits out the current user's history obj. 2) makes sure that that user does have a history obj in localStorage
-    const userName = localStorage.getItem('currentUsername');
-
-    const allHistoryText = localStorage.getItem('history');
-    let allHistory = [];
-    if (allHistoryText) {
-        allHistory = JSON.parse(allHistoryText).history;
-    }
-    if (allHistory.length > 0) { // there is some history
-        for ({name, words} of allHistory){
-            if (name == userName) { // no need to change anything
-                if (!words) words = [];
-                return {name, words};
-            }
-        }
-        // else there is history but not for this user
-        const newUser = {name: userName, words: []};
-        allHistory.push(newUser);
-        localStorage.setItem('history', JSON.stringify({"history": allHistory}))
-        for ({name, words} of allHistory){
-            if (name == userName) { // should be in there now
-                if (!words) words = [];
-                return {name, words};
-            }
-        }
-    } else { // no history at all. make a new user history obj
-        const newHistory = {name: userName, words: []};
-        localStorage.setItem('history', JSON.stringify({"history": [newHistory]}))
-        return newHistory;
-    }
+function getUserHistory(){
+    const userHistoryText = localStorage.getItem('userHistory');
+    const userHistory = JSON.parse(userHistoryText);
+    return userHistory;
 }
 
 loadPersonal();

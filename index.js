@@ -15,15 +15,26 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// GetHistory. Returns all history
+// GetHistory. Returns all history. Used to cache at login
+let history = [{name: 'default', words: []}];
 apiRouter.get('/history.html', (_req, res) => {
-  res.send(getHistory());
+    if (!history) 
+        history = [{name: 'default', words: []}];
+    res.send(history);
 });
 
 // SubmitHistory
 apiRouter.post('/update-history', (req, res) => {
   history = req.body;
+  if (history == {}) history = [{name: 'default', words: []}];
   res.send(history);
+});
+
+// GetPopular
+apiRouter.get('/popular', (_req, res) => {
+    popular = "water";
+    calculatePopular(history);
+    res.send(JSON.stringify(popular));
 });
 
 // Return the application's default page if the path is unknown
@@ -35,14 +46,45 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-function getHistory(){ // 1) spits out the current user's history obj. 2) makes sure that that user does have a history obj in localStorage
-    const userName = localStorage.getItem('currentUsername');
+// function getHistory(){ // 1) spits out the current user's history obj. 2) makes sure that that user does have a history obj in localStorage
+//     const allHistoryText = localStorage.getItem('history');
+//     let allHistory = [];
+//     if (allHistoryText) {
+//         allHistory = JSON.parse(allHistoryText).history;
+//     }
+//     return allHistory;
+// }
 
-    const allHistoryText = localStorage.getItem('history');
-    let allHistory = [];
-    if (allHistoryText) {
-        allHistory = JSON.parse(allHistoryText).history;
-    }
-    return allHistory;
+let popular = "water";
+function calculatePopular (history) {
+    return "water";
+// TODO: fix later
+    // let isEmpty = true;
+    // for (let user of history['history'].history)
+    //     if (user.words.length > 0) isEmpty = false;
+    // if (isEmpty) { return "water"; }
+
+
+    // let allWords = {};
+    // for (let user of history['history'].history) {
+    //     const words = user.words;
+    //     for (const word in words) {
+    //         if (!(words[word] in allWords)) {
+    //             allWords[words[word]] = 0;
+    //         }
+    //         allWords[words[word]]++;
+    //     }
+    // }
+    // let max = 0;
+    // let maxKey = "";
+    // for (let thisWord in allWords) {
+    //     if (allWords[thisWord] > max) {
+    //         max = allWords[thisWord];
+    //         maxKey = thisWord;
+    //     }
+    // }
+    // popular = allWords[maxKey];
+    // return popular;
 }
+
 

@@ -1,27 +1,7 @@
-async function loadHistory (){
-    let history = {};
-    try {
-        // Get the latest history from the service
-        const response = await fetch('/api/history');
-        history = await response.json();
-    
-        // Save the history in case we go offline in the future
-        localStorage.setItem('history', JSON.stringify(history));
-      } catch {
-        // If there was an error then just use the last saved history
-        const historyText = localStorage.getItem('history');
-        if (historyText) {
-          history = JSON.parse(historyText);
-        }
-      }
-
-      displayHistory();
-}
-
 function displayHistory() {
     // load the user's history object
     const userName = localStorage.getItem('currentUsername');
-    const history = getLocalHistory();
+    const history = getUserHistory();
     const words = history.words;
     
     const listBodyEl = document.querySelector('#history')
@@ -51,38 +31,12 @@ function displayHistory() {
     }
 }
 
-function getLocalHistory(){ // 1) spits out the current user's history obj. 2) makes sure that that user does have a history obj in localStorage
-    const userName = localStorage.getItem('currentUsername');
-
-    const allHistoryText = localStorage.getItem('history');
-    let allHistory = [];
-    if (allHistoryText) {
-        allHistory = JSON.parse(allHistoryText).history;
-    }
-    if (allHistory.length > 0) { // there is some history
-        for ({name, words} of allHistory){
-            if (name == userName) { // no need to change anything
-                if (!words) words = [];
-                return {name, words};
-            }
-        }
-        // else there is history but not for this user
-        const newUser = {name: userName, words: []};
-        allHistory.push(newUser);
-        localStorage.setItem('history', JSON.stringify({"history": allHistory}))
-        for ({name, words} of allHistory){
-            if (name == userName) { // should be in there now
-                if (!words) words = [];
-                return {name, words};
-            }
-        }
-    } else { // no history at all. make a new user history obj
-        const newHistory = {name: userName, words: []};
-        localStorage.setItem('history', JSON.stringify({"history": [newHistory]}))
-        return newHistory;
-    }
+function getUserHistory(){
+    const userHistoryText = localStorage.getItem('userHistory');
+    const userHistory = JSON.parse(userHistoryText);
+    return userHistory;
 }
 
-loadHistory();
+displayHistory();
 
 // history is: History[(name: John, history:{cat, dog, mouse}),(name: Emma, history: {red, blue, greed})]
