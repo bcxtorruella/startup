@@ -162,3 +162,14 @@ giveMeAJoke.getRandomDadJoke((joke) => {
   console.log(joke);
 });
 ```
+
+### How to Fetch an API
+```js
+const url = "https://api.chucknorris.io/jokes/random";
+fetch(url)
+  .then((x) => x.json())
+  .then((response) => {
+  
+    document.querySelector("pre").textContent = response['value'];
+  });
+```
