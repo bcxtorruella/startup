@@ -37,4 +37,4 @@ function getUserHistory(){
     return userHistory;
 }
 
-if (JSON.parse(localStorage.getItem('currentUser')) != null )displayHistory();
+displayHistory();

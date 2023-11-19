@@ -86,5 +86,18 @@ For this deliverable did a lot. I think I might have stepped a little bit over i
 - **Node.js/Express HTTP Servce** - done!
 - **Static middleware for frontend** - done!
 - **Third party service endpoints** - `For You` retrieves random words from a [random word API](http://random-word-api.herokuapp.com/home)
-- **Backend service endopoints** provides history and login functionality and consistency
+- **Backend service endpoints** provides history and login functionality and consistency
 - **Frontend calls** `For You`, `History`, and `Search` pages call backend
+
+
+## DB deliverable
+- **MongoDB Atlas db created** - done!
+- **Endpoints for data** - no longer just localStorage, now it sends to Mongo so you can login across machines
+- **Stores data in MongoDB** - done!
+
+## Login deliverable
+A lot of this was already done by the architecture I set up in the JS deliverable, with just a few changes to incorporate the new technologies.
+- **User registration** - creates a new account (with search history) in the database
+- **existing user** - Stores history in the same user if one already exists
+- **Use MongoDB to store credentials** - Stores user's name and words search
+- **Restricts functionality** - You can search whenever you want, but history (and recommendations based off history) are only available if you give a username at login
