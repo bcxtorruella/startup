@@ -37,6 +37,4 @@ function getUserHistory(){
     return userHistory;
 }
 
-displayHistory();
-
-// history is: History[(name: John, history:{cat, dog, mouse}),(name: Emma, history: {red, blue, greed})]
+if (JSON.parse(localStorage.getItem('currentUser')) != null )displayHistory();

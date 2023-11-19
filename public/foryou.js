@@ -110,6 +110,6 @@ function getUserHistory(){
     return userHistory;
 }
 
-loadPersonal();
+if (JSON.parse(localStorage.getItem('currentUser')) != null) loadPersonal();
 loadRandom();
 loadPopular();
