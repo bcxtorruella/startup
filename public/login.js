@@ -2,14 +2,12 @@
 
 async function loadHistory (){  // contact service to cache user's history
   let history = {};
-
+  const userName = JSON.parse(localStorage.getItem("currentUsername"))
   // Get the latest history from the service
   const response = await fetch('/api/history.html');
   history = await response.json();
-  history = history;
 
   // cache only this user
-  const userName = localStorage.getItem('currentUsername');
   /*** 
   const allHistoryText = localStorage.getItem('history');
   let allHistory = [];
@@ -39,7 +37,7 @@ function checkHistory(history, userName){ // 1) caches the allHistory obj. 2) ma
       const newHistory = [{name: userName, words: []}];
       localStorage.setItem('history', JSON.stringify(newHistory))
       saveHistory(newHistory);
-      return newHistory[userName];
+      return {name: userName, words: []};
   }
 }
 
@@ -57,7 +55,7 @@ function findUserHistory(history, userName) {
 
 async function login() {
   const nameEl = document.querySelector("#username");
-  localStorage.setItem("currentUsername", nameEl.value);
+  localStorage.setItem("currentUsername", JSON.stringify(nameEl.value));
 
   await loadHistory();
 
@@ -69,4 +67,5 @@ async function saveHistory(allHistory){
     method: 'POST',
     headers: {'content-type': 'application/json'},
     body: JSON.stringify(allHistory),
-  });}
+  });
+}

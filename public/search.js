@@ -14,7 +14,7 @@ async function addToHistory(word) {
     let history = getUserHistory(); // history obj for user
     const words = history.words;
 
-    const userName = localStorage.getItem('currentUsername');
+    const userName = JSON.parse(localStorage.getItem('currentUsername'));
     const allHistoryText = localStorage.getItem('history');
     let newAllHistory = JSON.parse(allHistoryText);
     
@@ -42,7 +42,7 @@ async function addToHistory(word) {
     // update all history
     localStorage.setItem('history', JSON.stringify(newAllHistory))
 
-    //update the service
+    // update the service
     const response = await fetch('/api/update-history', {
         method: 'POST',
         headers: {'content-type': 'application/json'},

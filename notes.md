@@ -1,3 +1,8 @@
+### execute a func for each in an array
+```js
+rentals.forEach((i) => console.log(i));
+```
+
 ### GitHub: 
 commit often and don't mix up who works on what task. Fixing branches down the road is a headache
 Fetch = refresh

@@ -1,12 +1,14 @@
 const express = require('express');
 const { get } = require('http');
+const DB = require('./database.js');
 const app = express();
 
 // The service port. In production the frontend code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware
-app.use(express.json());
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 // Serve up the frontend static content hosting
 app.use(express.static('public'));
@@ -15,32 +17,58 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// GetHistory. Returns all history. Used to cache at login
-let history = [{name: 'default', words: []}];
-apiRouter.get('/history.html', (_req, res) => {
-    if (!history) 
-        history = [{name: 'default', words: []}];
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
+
+// potential change: convert all function calls in /public
+// history.html init -> add-user
+// update-history(wholeArray) -> add-word(word)
+// most of GetHistory stays the same
+
+// current behavior: add-user will indeed be part of gethistory
+// not addword. just overwrite the whole brute each time :)
+//    go back to changes to revert
+
+
+// AddUser
+// apiRouter.post('/add-user', async (req, res) => {
+//   const newUser = req.body;
+//   const history = await DB.addUser(newUser);
+//   res.send(history);
+// });
+
+// GetHistory. Returns all history. Can initialize user's profile
+apiRouter.get('/history.html', async (req, res) => {
+    // const userName = req.body;
+    const history = await DB.getHistory();
     res.send(history);
 });
 
+// AddWord
+// apiRouter.post('/add-word', async (req, res) => {
+//   const newWord = req.body;
+//   const history = await DB.addWord(newWord);
+//   res.send(history);
+// });
+
 // SubmitHistory
-apiRouter.post('/update-history', (req, res) => {
-  history = req.body;
-  if (history == {}) history = [{name: 'default', words: []}];
-  res.send(history);
+apiRouter.post('/update-history', async (req, res) => {
+  const history = req.body;
+  // if (history == {}) history = [{name: 'default', words: []}];
+  await DB.updateHistory(history);
+  res.send();
 });
 
 // GetPopular
 apiRouter.get('/popular', (_req, res) => {
     popular = "water";
-    calculatePopular(history);
+    calculatePopular(); 
     res.send(JSON.stringify(popular));
 });
 
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
@@ -56,7 +84,7 @@ app.listen(port, () => {
 // }
 
 let popular = "water";
-function calculatePopular (history) {
+function calculatePopular () {
     return "water";
 // TODO: fix later
     // let isEmpty = true;
