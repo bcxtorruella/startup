@@ -178,3 +178,14 @@ fetch(url)
     document.querySelector("pre").textContent = response['value'];
   });
 ```
+
+### This code saved my life
+
+```js
+// tell everyone else you just searched it
+configureWebSocket();
+const me = JSON.parse(localStorage.getItem('currentUsername'));
+broadcastEvent(me, "search", word);
+```
+
+The way it works: broadcastEvent sends it to the server, eventually indirectly activating all the other clients' socket.onmessage methods. مَا شَاءَ ٱللَّٰهُ!
