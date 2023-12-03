@@ -1,5 +1,3 @@
-
-
 async function loadHistory (){  // contact service to cache user's history
   let history = {};
   const userName = JSON.parse(localStorage.getItem("currentUsername"))
@@ -58,6 +56,7 @@ async function login() {
   localStorage.setItem("currentUsername", JSON.stringify(nameEl.value));
 
   await loadHistory();
+//  configureWebSocket();
 
   window.location.href = "foryou.html";
 }
@@ -68,4 +67,9 @@ async function saveHistory(allHistory){
     headers: {'content-type': 'application/json'},
     body: JSON.stringify(allHistory),
   });
+}
+
+function configureWebSocket() {
+  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+  this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 }

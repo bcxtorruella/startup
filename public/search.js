@@ -6,8 +6,30 @@ function search() {
     if (word.length) {
         localStorage.setItem("currentWord", word);
         addToHistory(word); 
+        
+        // tell everyone else you just searched it
+        configureWebSocket();
+        const me = JSON.parse(localStorage.getItem('currentUsername'));
+        broadcastEvent(me, "search", word);
+
+        // display results
         window.location.href = "searchResult.html";
     }
+}
+
+async function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+}
+
+async function broadcastEvent(from, type, value) {
+    const event = {
+      from: from,
+      type: type,
+      value: value,
+    };
+    // while (socket.readyState == 0) { let int = 0; await setInterval(() => {let hi = 0;}, 1000) }
+    socket.onopen = () => this.socket.send(JSON.stringify(event)); // calls socket.onmessage for everyone else
 }
 
 async function addToHistory(word) {

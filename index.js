@@ -1,13 +1,14 @@
 const express = require('express');
 const { get } = require('http');
-const DB = require('./database.js');
 const app = express();
+const DB = require('./database.js');
+const { peerProxy } = require('./peerProxy.js');
 
 // The service port. In production the frontend code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware
-app.use(express.json())
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve up the frontend static content hosting
@@ -62,17 +63,19 @@ apiRouter.post('/update-history', async (req, res) => {
 });
 
 // GetPopular
-apiRouter.get('/popular', (_req, res) => {
-    popular = "water";
-    calculatePopular(); 
-    res.send(JSON.stringify(popular));
-});
+// apiRouter.get('/popular', (_req, res) => {
+//     popular = "water";
+//     calculatePopular(); 
+//     res.send(JSON.stringify(popular));
+// });
 
 
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService);
 
 // function getHistory(){ // 1) spits out the current user's history obj. 2) makes sure that that user does have a history obj in localStorage
 //     const allHistoryText = localStorage.getItem('history');
@@ -83,36 +86,33 @@ app.listen(port, () => {
 //     return allHistory;
 // }
 
-let popular = "water";
-function calculatePopular () {
-    return "water";
-// TODO: fix later
-    // let isEmpty = true;
-    // for (let user of history['history'].history)
-    //     if (user.words.length > 0) isEmpty = false;
-    // if (isEmpty) { return "water"; }
+// function calculatePopular () {
+//     return "water";
+// // TODO: fix later
+//     // let isEmpty = true;
+//     // for (let user of history['history'].history)
+//     //     if (user.words.length > 0) isEmpty = false;
+//     // if (isEmpty) { return "water"; }
 
 
-    // let allWords = {};
-    // for (let user of history['history'].history) {
-    //     const words = user.words;
-    //     for (const word in words) {
-    //         if (!(words[word] in allWords)) {
-    //             allWords[words[word]] = 0;
-    //         }
-    //         allWords[words[word]]++;
-    //     }
-    // }
-    // let max = 0;
-    // let maxKey = "";
-    // for (let thisWord in allWords) {
-    //     if (allWords[thisWord] > max) {
-    //         max = allWords[thisWord];
-    //         maxKey = thisWord;
-    //     }
-    // }
-    // popular = allWords[maxKey];
-    // return popular;
-}
-
-
+//     // let allWords = {};
+//     // for (let user of history['history'].history) {
+//     //     const words = user.words;
+//     //     for (const word in words) {
+//     //         if (!(words[word] in allWords)) {
+//     //             allWords[words[word]] = 0;
+//     //         }
+//     //         allWords[words[word]]++;
+//     //     }
+//     // }
+//     // let max = 0;
+//     // let maxKey = "";
+//     // for (let thisWord in allWords) {
+//     //     if (allWords[thisWord] > max) {
+//     //         max = allWords[thisWord];
+//     //         maxKey = thisWord;
+//     //     }
+//     // }
+//     // popular = allWords[maxKey];
+//     // return popular;
+// }

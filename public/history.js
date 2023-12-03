@@ -18,6 +18,12 @@ function displayHistory() {
                 const thisWord = this.textContent;
                 localStorage.setItem("currentWord", thisWord);
                 addToHistory(thisWord);
+
+                // tell everyone else you just searched it
+                configureWebSocket();
+                const me = JSON.parse(localStorage.getItem('currentUsername'));
+                broadcastEvent(me, "search", word);
+                
                 window.location.href = "searchResult.html";
             };
 

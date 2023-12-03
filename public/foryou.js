@@ -25,6 +25,12 @@ function loadPersonal() {
                 const thisWord = this.textContent;
                 localStorage.setItem("currentWord", thisWord);
                 addToHistory(thisWord);
+
+                // tell everyone else you just searched it
+                configureWebSocket();
+                const me = JSON.parse(localStorage.getItem('currentUsername'));
+                broadcastEvent(me, "search", thisWord);
+
                 window.location.href = "searchResult.html";
             };
 
@@ -79,6 +85,12 @@ function loadRandom() {
                 const thisWord = this.textContent;
                 localStorage.setItem("currentWord", thisWord);
                 addToHistory(thisWord);
+
+                // tell everyone else you just searched it
+                configureWebSocket();
+                const me = JSON.parse(localStorage.getItem('currentUsername'));
+                broadcastEvent(me, "search", word);
+
                 window.location.href = "searchResult.html";
             };
         });
@@ -88,18 +100,34 @@ function loadRandom() {
 
 async function loadPopular(){
     // consult every user's history to see which word appears the most in them all
-    const response = await fetch('/api/popular');
-    word = await response.json();
+    // TODO: use websocket to constantly display the last searched word by any user 
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
-    // post that word
+    // receive message from socket -- other user's broadcastEvent()
     const popularEl = document.querySelector("#popular")
-    // word = "water";
+    popularEl.textContent = "No one's online!";
+    this.socket.onmessage = async (event) => {
+        const msg = JSON.parse(await event.data.text()); // parses what is sent by broadcastEvent()
 
-    popularEl.textContent = word;
+        // post whatever word was sent
+        popularEl.textContent = `${msg.from} just searched for ${msg.value}`;
+    };
+
+    // const response = await fetch('/api/popular');
+    // popular = await response.json();
+
     popularEl.onclick = function() {
-        const thisWord = this.textContent;
+        const strip = this.textContent.split(" ")
+        const thisWord = strip[strip.length - 1];
         localStorage.setItem("currentWord", thisWord);
         addToHistory(thisWord);
+
+        // tell everyone else you just searched it
+        configureWebSocket();
+        const me = JSON.parse(localStorage.getItem('currentUsername'));
+        broadcastEvent(me, "search", thisWord);
+
         window.location.href = "searchResult.html";
     };
 }
