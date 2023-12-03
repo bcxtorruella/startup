@@ -101,3 +101,11 @@ A lot of this was already done by the architecture I set up in the JS deliverabl
 - **existing user** - Stores history in the same user if one already exists
 - **Use MongoDB to store credentials** - Stores user's name and words search
 - **Restricts functionality** - You can search whenever you want, but history (and recommendations based off history) are only available if you give a username at login
+- **I will revisit this to implement proper authorization!!**
+
+## WebSocket deliverable
+For this deliverable I decided to convert one of the regions in the `For You` section from "most popular word" to "most recently searched word." I thought it would fulfill a similar niche: showing users what other users are up to. It's pretty cool since it updates in real time as other users search words, almost like a chatbox.
+- **Backend listens for WebSocket connection** - this happens in `peerProxy.js`
+- **Frontend makes WebSocket connection** - all of my frontend pages that are capable of searching do this.
+- **Data sent over WebSocket connection** - this works. It sends the word that was searched
+- **WebSocket data displayed** - In the `Recently Searched Word!` box on the `For You` page, it displays the word most recently searched, as well as the username of the user who searched it. You can click the box to search the word, too.
