@@ -1,16 +1,16 @@
 // set current word and move to result screen
-function search() {
+async function search() {
     const inputEl = document.querySelector('#search-bar')
     const word = inputEl.value;
 
     if (word.length) {
         localStorage.setItem("currentWord", word);
         addToHistory(word); 
-        
+
         // tell everyone else you just searched it
         configureWebSocket();
         const me = JSON.parse(localStorage.getItem('currentUsername'));
-        broadcastEvent(me, "search", word);
+        await broadcastEvent(me, "search", word);
 
         // display results
         window.location.href = "searchResult.html";
@@ -19,8 +19,16 @@ function search() {
 
 async function configureWebSocket() {
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    this.socket = new Promise ((resolve) => {
+        const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        socket.onopen = () => resolve(socket);
+    } ) 
+
+    //allow connection to open
+    await delay(2000);
 }
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 async function broadcastEvent(from, type, value) {
     const event = {
@@ -29,7 +37,8 @@ async function broadcastEvent(from, type, value) {
       value: value,
     };
     // while (socket.readyState == 0) { let int = 0; await setInterval(() => {let hi = 0;}, 1000) }
-    socket.onopen = () => this.socket.send(JSON.stringify(event)); // calls socket.onmessage for everyone else
+    (await this.socket).send(JSON.stringify(event)); // calls socket.onmessage for everyone else
+    //this.socket.close()
 }
 
 async function addToHistory(word) {

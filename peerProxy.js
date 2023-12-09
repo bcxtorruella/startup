@@ -19,19 +19,21 @@ function peerProxy(httpServer) {
     const connection = { id: uuid.v4(), alive: true, ws: ws };
     connections.push(connection);
 
-    // Forward messages to everyone except the sender
+    // Forward messages to everyone
     ws.on('message', function message(data) {
       connections.forEach((c) => {
-        if (c.id !== connection.id) {
+        // if (c.id !== connection.id) {
           c.ws.send(data);
-        }
+        // }
       });
+      const mybrk = 0;
     });
 
     // Remove the closed connection so we don't try to forward anymore
     ws.on('close', () => {
       connections.findIndex((o, i) => {
         if (o.id === connection.id) {
+          console.log(`closing connection:\t${o.id}`)
           connections.splice(i, 1);
           return true;
         }

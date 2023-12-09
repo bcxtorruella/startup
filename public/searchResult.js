@@ -37,7 +37,7 @@ function populateCardList(listElement, values){
                 // tell everyone else you just searched it
                 configureWebSocket();
                 const me = JSON.parse(localStorage.getItem('currentUsername'));
-                broadcastEvent(me, "search", word);
+                broadcastEvent(me, "search", thisWord);
 
                 window.location.href = "searchResult.html";
             };

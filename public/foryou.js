@@ -104,6 +104,9 @@ async function loadPopular(){
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
+    // await socket
+    // while (this.socket.readyState == 0) { let int = 0; }
+
     // receive message from socket -- other user's broadcastEvent()
     const popularEl = document.querySelector("#popular")
     popularEl.textContent = "No one's online!";
