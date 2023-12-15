@@ -43,7 +43,7 @@ export function Login() {
   function findUserHistory(history, userName) {
     for (user in history){
       const name = history[user].name;
-      const words = history[user].words;
+      let words = history[user].words;
       if (name == userName) { 
           if (!words) words = [];
           return {name, words};

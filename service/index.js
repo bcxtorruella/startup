@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve up the frontend static content hosting
-app.use(express.static('./src'));
+app.use(express.static('public'));
 
 // Router for service endpoints
 const apiRouter = express.Router();
@@ -20,8 +20,11 @@ app.use(`/api`, apiRouter);
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile('/login/index.html', { root: './src' });
+  res.sendFile('index.html', { root: 'public' });
 });
+
+app.set('trust proxy', true);
+
 
 // potential change: convert all function calls in /public
 // history.html init -> add-user

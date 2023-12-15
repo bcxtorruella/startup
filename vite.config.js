@@ -10,4 +10,6 @@ export default defineConfig({
       },
     },
   },
+  base: './',
+  resolve: {extensions:['.js','.mjs','.jsx']}
 });
