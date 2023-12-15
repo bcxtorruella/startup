@@ -109,3 +109,10 @@ For this deliverable I decided to convert one of the regions in the `For You` se
 - **Frontend makes WebSocket connection** - all of my frontend pages that are capable of searching do this.
 - **Data sent over WebSocket connection** - this works. It sends the word that was searched
 - **WebSocket data displayed** - In the `Recently Searched Word!` box on the `For You` page, it displays the word most recently searched, as well as the username of the user who searched it. You can click the box to search the word, too.
+
+## React deliverable
+For this deliverable I converted everything I had done into React components. I also got rid of all the placeholder data so the app is fully operational. When I first uploaded it to the website, it didn't work at all. I had to spend a couple of hours debugging that :( But it works!
+- **Bundled and transpiled** - done! I just followed what Simon did.
+- **Components** - merged each pair of js and html files into a jsx component file. Sweet.
+- **Router** - Routing goes between `Login`, `For You`, `Search`, and `History`. Clicking any of the words will search them!
+- **Hooks** - I use `useState` and `useEffect` where appropriate. I don't know if it's a hook, but I also use React's `useNavigate` for the `onClick` functions to search.
