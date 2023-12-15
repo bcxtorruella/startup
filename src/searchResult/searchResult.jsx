@@ -53,7 +53,6 @@ export function SearchResult() {
       let output = [0,1,2]
       const result = await fetch(`https://api.api-ninjas.com/v1/${type}?word=${thisWord}`, { headers: { 'X-Api-Key': 'Wn6+tVQwEgIWa3xpP/RLBQ==1NAqlAD6KevDFAL2'}})
       let data = await result.json();
-      // TODO: dies at this line???
       if (type == "thesaurus") data = data["synonyms"]; // this one's nested; rhymes are not
       if (data.length == 0) { output = []; return []; }
       for(let i = 0; i < 5; i++) {
@@ -68,6 +67,7 @@ export function SearchResult() {
   // render array with react
   async function postResults(){
     let newOutput = []
+    newOutput.push(<h3 key={0}>Rhymes:</h3>);
     if (!(rhymes.length == 0)) { // if there are rhymes
       // for each word to post, a row.
       for (const i in rhymes) { 
@@ -84,6 +84,8 @@ export function SearchResult() {
               broadcastEvent(me, "search", thisWord);
 
               navigate("/searchResult")
+              searchWord = thisWord;
+              loadResults()
             }}>{rhymes[i]}
           </li>
         )
@@ -92,6 +94,7 @@ export function SearchResult() {
         newOutput.push("no rhymes found!");
     }
 
+    newOutput.push(<h3 key={1}>Similar words:</h3>);
     if (!(similars.length == 0)) { // if there are similars
       // for each word to post, a row.
       for (const i in similars) { 
@@ -108,6 +111,8 @@ export function SearchResult() {
             broadcastEvent(me, "search", thisWord);
 
             navigate("/searchResult")
+            searchWord = thisWord;
+            loadResults()
           }}>{similars[i]}
           </li>
         );

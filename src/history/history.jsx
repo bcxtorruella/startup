@@ -43,7 +43,7 @@ export function History() {
         // for each word searched, a row.
         for (const word of words) { 
           display.push(
-            <li key={word.length*word.length*69} onClick={() => {
+            <li key={Math.floor(Math.random()*7919)} onClick={() => {
               const thisWord = word;
               localStorage.setItem("currentWord", thisWord);
               addToHistory(thisWord);
