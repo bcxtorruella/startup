@@ -136,8 +136,9 @@ export function SearchResult() {
   console.log(searchOutput);
 
   return (
+    <div>
+    <h1 id="page-header" className="fly-in">Results for: <i id="headword" className="fly-in">{headWord}</i></h1>
     <main className='container-fluid bg-secondary text-center'>
-      <h1 id="page-header" className="fly-in">Results for: <i id="headword" className="fly-in">{headWord}</i></h1>
 
       <form id="search" className="fade">
         <input 
@@ -169,5 +170,6 @@ export function SearchResult() {
       </div>
       
     </main>
+    </div>
   );
 }

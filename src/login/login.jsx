@@ -75,8 +75,10 @@ export function Login() {
 
 
   return (
+    <div>
+    <h1 id="page-header">Sign In</h1>
+
     <main className='container-fluid bg-secondary text-center'>
-      <h1 id="page-header">Sign In</h1>
       
       <form id="login-card" className="fly-in">
         <div className="login-content">
@@ -99,5 +101,6 @@ export function Login() {
       </form>
 
     </main>
+    </div>
   );
 }

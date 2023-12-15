@@ -179,9 +179,10 @@ async function broadcastEvent(from, type, value) {
 
 
   return (
-    <main className='container-fluid bg-secondary text-center'>
+    <div>
+    <h1 id="page-header" className="fade">For You!</h1>
+    <main className='container-fluid bg-secondary text-center' style={{display: "flex", flexDirection: "row"}}>
 
-      <h1 id="page-header" className="fade">For You!</h1>
 
       <div className="list-card fade" style={{textAlign: 'left'}}>
           <h3 className="card-header">Some fun words...</h3>
@@ -224,5 +225,6 @@ async function broadcastEvent(from, type, value) {
         </div>
       </div>
     </main>
+    </div>
   );
 }

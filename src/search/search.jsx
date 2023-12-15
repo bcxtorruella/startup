@@ -38,8 +38,10 @@ export function Search() {
   }
 
   return (
+    <div>
+    <h1 id="page-header" className="fade">Search</h1>
+
     <main className='container-fluid bg-secondary text-center'>
-      <h1 id="page-header" className="fade">Search</h1>
 
       <form id="search" className="fade">
         <input 
@@ -66,6 +68,7 @@ export function Search() {
         }}>Search</button>
       </form>
     </main>
+    </div>
   );
 }
 

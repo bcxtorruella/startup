@@ -73,13 +73,15 @@ export function History() {
  displayHistory();
 
   return (
+    <div>
+    <h1 id="page-header" className="fade">History</h1>
     <main className='container-fluid bg-secondary text-center'>
-      <h1 id="page-header" className="fade">History</h1>
       <div className="list-card fade">
         <ul id="history" className="card-content">
           {display}
         </ul>
       </div>
     </main>
+    </div>
   );
 }
