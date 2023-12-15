@@ -1,6 +1,6 @@
 import React from 'react';
 import './app.css';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Login } from './login/login.jsx';
 import { ForYou } from './foryou/foryou.jsx';
 import { History } from './history/history.jsx';
@@ -12,7 +12,7 @@ import { SearchResult } from './searchResult/searchResult.jsx';
 export default function App() {
   return (
     <BrowserRouter>
-        <div className='body bg-dark text-light'>
+        <div className='body'>
             <header>
             <h1 id="site-header">PoetryMate<sup> :)</sup></h1>
             <nav>
@@ -24,10 +24,9 @@ export default function App() {
             </header>
             <hr />
 
-
             <Routes>
                 <Route path='/' element={<Login />} />
-                <Route path='/foryou' element={<ForYou />} />
+                <Route path='foryou' element={<ForYou />} />
                 <Route path='/history' element={<History />} />
                 <Route path='/search' element={<Search />} />
                 <Route path='/searchresult' element={<SearchResult />} />

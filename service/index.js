@@ -20,7 +20,7 @@ app.use(`/api`, apiRouter);
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: './src' });
+  res.sendFile('/login/index.html', { root: './src' });
 });
 
 // potential change: convert all function calls in /public
