@@ -10,12 +10,19 @@ Cookie attributes:
 - HTTPOnly: don't let JS access me
 
 MongoDB: $gt looks for greater than
+
 Store with hash and salt
+
 WebSocket is a long-lived bidirectional connection w messages
+
 JSX is a way to interpret XML like fragments in JS files by converting to JS instructions
+
 React Hooks let you hook into the builtin lifecycle of the React render process. useEffect is every render, useState is across renders.
+
 Node.js is runtime and executes js outside browser
+
 Npm is package manager compatible with node.js ^ and other stuff vv
+
 Vite is a frontend build tool. Linter, minifiers. Even if a package isn't loaded at runtime in the browser vite can load it.
 
 ### execute a func for each in an array
