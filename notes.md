@@ -1,3 +1,22 @@
+### Study Guide
+
+HTTP port: 80 HTTPS: 443 SSH: 22
+HTTP status codes: 300: decline/redirect, 400: client error, 500: server error
+`content-type` allows specification of file type and data language
+Cookie attributes:
+- Domain: only servers and code from that domain can read the cookie
+- Path: like domain, but a path on the domain that the script must be hosted on to read the cookie
+- SameSite: if false, then disregard above. Should be true
+- HTTPOnly: don't let JS access me
+MongoDB: $gt looks for greater than
+Store with hash and salt
+WebSocket is a long-lived bidirectional connection w messages
+JSX is a way to interpret XML like fragments in JS files by converting to JS instructions
+React Hooks let you hook into the builtin lifecycle of the React render process. useEffect is every render, useState is across renders.
+Node.js is runtime and executes js outside browser
+Npm is package manager compatible with node.js ^ and other stuff vv
+Vite is a frontend build tool. Linter, minifiers. Even if a package isn't loaded at runtime in the browser vite can load it.
+
 ### execute a func for each in an array
 ```js
 rentals.forEach((i) => console.log(i));
