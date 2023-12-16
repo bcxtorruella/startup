@@ -8,6 +8,7 @@ Cookie attributes:
 - Path: like domain, but a path on the domain that the script must be hosted on to read the cookie
 - SameSite: if false, then disregard above. Should be true
 - HTTPOnly: don't let JS access me
+
 MongoDB: $gt looks for greater than
 Store with hash and salt
 WebSocket is a long-lived bidirectional connection w messages
